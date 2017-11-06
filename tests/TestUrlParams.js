@@ -14,6 +14,10 @@ require(['urlParams'],function(params){
     params.parse('foo=a&foo=b')
     assert.deepEqual(params.get('foo'),['a','b']);
   });
+  QUnit.test("array with three elements", function(assert) {
+    params.parse('foo=a&foo=b&foo=c')
+    assert.deepEqual(params.get('foo'),['a','b','c']);
+  });
   QUnit.test("encoded", function(assert) {
     params.parse('?foo=a%20b&bar=a+b&baz=%26')
     assert.equal(params.get('foo'),'a b');
