@@ -24,7 +24,11 @@ define(function(){
     while (match = regex.exec(string)) {
       var name  = decodeURIComponent(match[1]),
           value = decodeURIComponent(match[2]);
-      params[name] = params[name] === undefined ? value : (params[name] instanceof Array ? params[name].push(value) : params[name] = [params[name],value]);
+      if (params[name]) {
+        params[name] instanceof Array ? params[name].push(value) : params[name] = [params[name], value];
+      } else {
+        params[name] = value;
+      }
     }
     return cache = params;
   }
